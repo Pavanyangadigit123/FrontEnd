@@ -1,0 +1,84 @@
+/* LabourProfile.css */
+
+.labour-profile-container {
+    padding: 50px 0;
+    background-color:lightslategray;
+  }
+  
+  .labour-profile-card {
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #9bd0f3;
+  }
+  
+  .labour-profile-card .card-body {
+    padding: 30px;
+  }
+  
+  .labour-profile-image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border: 3px solid #93e2bb;
+    margin-bottom: 20px;
+  }
+  
+  .labour-profile-header {
+    text-align: center;
+  }
+  
+  .labour-profile-header h4 {
+    margin-top: 15px;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .labour-profile-header p {
+    color: #888;
+  }
+  
+  .labour-profile-info {
+    margin-top: 20px;
+  }
+  
+  .labour-profile-info h5 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #1b7b2c;
+  }
+  
+  .labour-profile-info p {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .labour-profile-info strong {
+    color: #333;
+  }
+  
+  .labour-skills-section {
+    margin-top: 40px;
+  }
+  
+  .labour-skills-section h5 {
+    font-size: 20px;
+    color: #1b7b2c;
+  }
+  
+  .labour-skills-section ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .labour-skills-section li {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #555;
+  }
+  
+  .labour-skills-section li strong {
+    color: #333;
+  }
+  

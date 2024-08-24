@@ -1,0 +1,36 @@
+.signup-container {
+    background-color: #0894d1;
+    border-radius: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .signup-container h1 {
+    color: #096dd1;
+    justify-content: center;
+  }
+  
+  .form-control {
+    border-radius: 5px;
+    border: 5px solid #01101e;
+    padding: 10px;
+    font-size: 14px;
+  }
+  
+  .form-control:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    width: 50%;
+    padding: 10px;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+  }
+
+  

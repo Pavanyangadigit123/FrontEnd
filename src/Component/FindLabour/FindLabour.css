@@ -1,0 +1,47 @@
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    /* background-color: aqua; */
+  }
+
+  .background{
+    color: cornflowerblue;
+  }
+  
+  .alert {
+    margin-bottom: 20px;
+  }
+  
+  .filter-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .filter-input {
+    width: 250px; /* Adjust this width as needed */
+    margin-right: 10px;
+  }
+  
+  .labour-card {
+    border-radius: 15px;
+    height: 250px;  /* Adjust height as needed */
+    width: 100%; /* Ensures card takes full width in its column */
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    background-color: aquamarine;
+  }
+  
+  .labour-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .card-title {
+    font-weight: bold;
+  }
+  
+  .btn {
+    margin-top: 10px;
+  }
+  

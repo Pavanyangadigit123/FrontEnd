@@ -1,0 +1,35 @@
+.footer-custom {
+    padding: 10px 0; /* Reduce overall padding */
+    background-color:khaki;
+  }
+  
+  .footer-custom .p-4 {
+    padding: 0.1rem !important; /* Reduce padding inside sections */
+  }
+  
+  .footer-custom .mt-5 {
+    margin-top: 0.3rem !important; /* Reduce top margin */
+  }
+  
+  .footer-custom .mb-4, .footer-custom .mb-md-0 {
+    margin-bottom: 0.5rem !important; /* Reduce bottom margin */
+  }
+  
+  .footer-custom h6 {
+    font-size: 14px; /* Optional: reduce heading font size */
+    margin-bottom: 0.5rem; /* Reduce bottom margin for headings */
+  }
+  
+  .footer-custom p, .footer-custom a {
+    font-size: 12px; /* Optional: reduce paragraph and link font size */
+    margin-bottom: 0.5rem; /* Reduce bottom margin for paragraphs and links */
+  }
+  
+  .footer-custom i {
+    font-size: 16px; /* Optional: reduce icon size */
+  }
+
+  .border-bottom {
+    border-bottom: 50px solid #150501; /* Change #ff5733 to your desired color */
+  }
+  
