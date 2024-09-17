@@ -2,32 +2,49 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./FindLabour.css"; // Importing CSS for styling
 import Layout from "../Layout/Layout";
+import { useAuth } from "../../context/auth";
+import axios from "axios";
 
 const FindLabour = () => {
+  const [auth] = useAuth();
   const [labours, setLabours] = useState([]);
   const [filters, setFilters] = useState({
     area: "",
     city: "",
     state: "",
-    country: "",
-    zipCode: "",
     skillName: "",
   });
   const navigate = useNavigate();
 
   const fetchLabours = async () => {
     try {
-      const response = await fetch("http://localhost:8080/api/v1/labour");
-      const data = await response.json();
-      setLabours(data);
-      
+      // Construct the URL with query parameters for filtering
+      const queryParams = new URLSearchParams({
+        skill: filters.skillName,
+        city: filters.city,
+        area: filters.area,
+        state: filters.state,
+      }).toString();
+
+      const response = await axios.get(
+        `http://localhost:9000/api/v1/labour/filter?${queryParams}`,
+        {
+          headers: {
+            Authorization: auth?.token,
+          },
+        }
+      );
+      const data = await response.data;
+      console.log(data);
+      // Assuming the response has a 'users' property containing the list of labours
+      setLabours(data || []);
     } catch (error) {
       console.error("Error fetching labours:", error);
     }
   };
 
   useEffect(() => {
-    fetchLabours();
+    fetchLabours(); // Fetch all labours on initial render
   }, []);
 
   const handleSeeProfile = (labour) => {
@@ -45,27 +62,6 @@ const FindLabour = () => {
     return Object.values(filters).some((filter) => filter.trim() !== "");
   };
 
-  const filteredLabours = labours.filter((labour) => {
-    console.log(labour.labourSkillDtos);
-    return (
-      (filters.area === "" ||
-        labour.area?.toLowerCase().includes(filters.area.toLowerCase())) &&
-      (filters.city === "" ||
-        labour.city?.toLowerCase().includes(filters.city.toLowerCase())) &&
-      (filters.state === "" ||
-        labour.state?.toLowerCase().includes(filters.state.toLowerCase())) &&
-      (filters.country === "" ||
-        labour.country
-          ?.toLowerCase()
-          .includes(filters.country.toLowerCase())) &&
-          (filters.zipCode === "" ||
-            labour.zipCode?.toLowerCase().includes(filters.zipCode.toLowerCase())) &&
-          (filters.skillName === "" ||
-            labour.labourSkillDtos?.some(skill =>
-              skill.skillName.toLowerCase().includes(filters.skillName.toLowerCase())
-            ))
-        );
-      });
   return (
     <Layout>
       <div
@@ -80,7 +76,7 @@ const FindLabour = () => {
           )}
 
           <div className="filter-container mb-3">
-          <input
+            <input
               type="text"
               className="form-control mb-1 filter-input"
               name="skillName"
@@ -112,33 +108,20 @@ const FindLabour = () => {
               value={filters.state}
               onChange={handleFilterChange}
             />
-            {/* <input
-              type="text"
-              className="form-control mb-1 filter-input"
-              name="country"
-              placeholder="Search by country..."
-              value={filters.country}
-              onChange={handleFilterChange}
-            /> */}
-            <input
-              type="text"
-              className="form-control mb-1 filter-input"
-              name="zipCode"
-              placeholder="Search by zip code..."
-              value={filters.zipCode}
-              onChange={handleFilterChange}
-            />
           </div>
+
+          {/* Search button */}
+          <button className="btn btn-primary mb-3" onClick={fetchLabours}>
+            Search
+          </button>
 
           <div className="row">
             {isAnyFilterApplied() ? (
-              filteredLabours.length > 0 ? (
-                filteredLabours.map((labour) => (
-                 
+              labours.length > 0 ? (
+                labours.map((labour) => (
                   <div className="col-md-4 mb-4" key={labour.id}>
                     <div className="card labour-card">
                       <div className="card-body text-black">
-                    
                         <h5 className="card-title">
                           {labour.firstName} {labour.lastName}
                         </h5>

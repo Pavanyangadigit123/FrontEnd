@@ -1,39 +1,11 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import "./Header.css"
-import { useKeycloak } from '@react-keycloak/web';
+
 
 
 const Header = () => {
-  const { keycloak, initialized } = useKeycloak();
  
-    const socailMediaSingup = (keycloakData, onSuccess) => {
-      console.log(keycloakData.tokenParsed.email);
-  
-      setTimeout(() => {
-        onSuccess && onSuccess(res);
-      }, 2000);
-    }
-    useEffect(() => {
-      if (keycloak.authenticated) {
-        console.log("keycloak.authenticated", keycloak.authenticated);
-        socailMediaSingup(keycloak, (res) => {
-          if (res.data.status === 200) {
-            if (res.data.result.isDetailsAvailable) {
-            //   // If details are available take the user to dashborad page
-            //   if (nonLoggedInUserData && nonLoggedInUserData.redirectUrl) {
-            //     history.push(nonLoggedInUserData.redirectUrl);
-            //   } else {
-            //     history.push("/homebuyer/explore");
-            //   }
-            } else {
-              //If details are not available take the user to home buyer details page
-              //history.push("/homebuyerdetails");
-            }
-          }
-        });
-      }
-    }, [keycloak.authenticated]);
 
     return (
         <>
@@ -86,6 +58,38 @@ const Header = () => {
               <i className="fas fa-search"></i> <h6>Search For Labours</h6>
               </Link>
             </li>
+
+                   {/* Settings Dropdown */}
+                   <li className="nav-item dropdown">
+                <a
+                  className="nav-link dropdown-toggle"
+                  href="#"
+                  id="settingsDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <i className="fas fa-cog"></i> <h6>Settings</h6>
+                </a>
+                <ul className="dropdown-menu" aria-labelledby="settingsDropdown">
+                  <li>
+                    <Link className="dropdown-item" to="/profile">
+                      <i className="fas fa-user"></i> View Profile
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="dropdown-item" to="/signout">
+                      <i className="fas fa-sign-out-alt"></i> Sign Out
+                    </Link>
+                  </li>
+                </ul>
+              </li>
+              {/* Notification Icon */}
+              <li className="nav-item">
+                <Link className="nav-link active" aria-current="page" to="/notifications">
+                  <i className="fas fa-bell"></i> <h6>Notifications</h6>
+                </Link>
+              </li>
              
           
           </ul>

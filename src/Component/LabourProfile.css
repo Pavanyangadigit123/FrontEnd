@@ -2,7 +2,7 @@
 
 .labour-profile-container {
     padding: 50px 0;
-    background-color:lightslategray;
+    background-color:whitesmoke;
   }
   
   .labour-profile-card {
@@ -10,7 +10,7 @@
     margin: 0 auto;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: #9bd0f3;
+    background-color: rgb(194, 226, 246);
   }
   
   .labour-profile-card .card-body {

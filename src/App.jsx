@@ -9,30 +9,28 @@ import FindLabours from './Component/FindLabour/FindLabours';
 import LabourProfile from './Component/LabourProfile';
 import '../src/Component/HomePage.css'
 import RegistrationOptions from './Component/Registration/RegistrationOptions';
+import FAQ from './Component/FAQ';
 
-import keycloak from './keycloak';
-import {ReactKeycloakProvider } from '@react-keycloak/web';
-import { useEffect } from 'react';
+
+
 
 import PrivateRoute from '../src/Routes/PrivateRoutes';
+import Order from './Component/Order/Order';
+import ProfilePictureUpload from './ProfilePictureUpload';
+import BookingPage from './Component/BookingPage/BookingPage';
+import PaymentPage from './Component/PaymentPage/PaymentPage';
+
 
 
 function App() {
-  useEffect(() => {
-    if (window.opener) {
-      // send them to the opening window
-      window.focus();
-      window.opener.location.href = "/";
-      window.close();
-    }
-  }, []);
  
 
   return (
     <>
-      <ReactKeycloakProvider authClient={keycloak}>
+      
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/order" element={<Order />} />
         {/* <Route path="/about" element={<About />} /> */}
         <Route path="/contact" element={<Contact />} />
         <Route path="/signupUser" element={<SignupUser />} />
@@ -40,11 +38,15 @@ function App() {
         <Route path="/signin" element={<Signin/>} />
         <Route path="/findLabours" element={<FindLabours/>} />
         <Route path="/profile" element={<LabourProfile />} />
+        <Route path="/faq" element={<FAQ/>} />
         <Route path="/register-options" element={<RegistrationOptions />} />
-        <Route path="/about" element={<PrivateRoute />}>
-        </Route>
+        <Route path="/profile-picture" element={<ProfilePictureUpload />} />
+        <Route path="/booking" element={<BookingPage />} />
+        <Route path="/payment" element={<PaymentPage />} />
+        <Route path="/about" element={<PrivateRoute><About/></PrivateRoute>}/>
+        {/* </Route> */}
       </Routes>
-      </ReactKeycloakProvider>
+    
 
     </>
   )

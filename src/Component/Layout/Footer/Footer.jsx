@@ -53,7 +53,7 @@ function Footer() {
                     </a>
                   </p>
                   <p>
-                    <a href="#!" className="text-reset">
+                    <a href="/faq" className="text-reset">
                       FAQ
                     </a>
                   </p>

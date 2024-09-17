@@ -3,17 +3,27 @@ import { useNavigate } from "react-router-dom";
 import Layout from "../../Layout/Layout";
 import "./Signin.css";
 import axios from "axios";
-
+import { GoogleLogin, useGoogleLogin } from "@react-oauth/google";
 
 const Signin = () => {
- 
- 
   const [showDropdown, setShowDropdown] = useState(false);
   const navigate = useNavigate();
 
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setUser((prevUser) => ({ ...prevUser, [name]: value }));
+  };
+
+  console.log(user);
+
   const handleRegisterClick = (e) => {
     e.preventDefault();
-    navigate('/register-options');
+    navigate("/register-options");
   };
 
   const handleSignupLabour = () => {
@@ -24,15 +34,76 @@ const Signin = () => {
     navigate("/SignupUser");
   };
 
-  // Google sign in
-  const signInWithGoogle = async (event) => {
-  
-    window.open(
-      "http://localhost:8080/realms/LABOURHUB/protocol/openid-connect/auth?response_type=code&client_id=LHFE&kc_idp_hint=google",
-      "google login",
-      "toolbar=no, menubar=no, width=700, height=700, top=100, left=300"
-    );
-   
+  const googleLogin = useGoogleLogin({
+    onSuccess: (codeResponse) => signWithGoogle(codeResponse),
+    onError: (error) => toast.error("Google login failed. Please try again."),
+  });
+
+  const signWithGoogle = async (codeResponse) => {
+    try {
+      const requestBody = {
+        accessToken: codeResponse?.access_token,
+      };
+      const response = await axios
+        .post(`http://localhost:9000/api/v1/user/signInWithGoogle`, requestBody)
+        .catch((err) => {
+          console.error(err);
+          window.alert("An error occurred during login. Please try again.");
+        });
+
+      if (response?.status === 200) {
+        console.log(response);
+        window.alert("Logged in Successfully.");
+        const token = response.headers["access_token"];
+        localStorage.setItem("token", token);
+        // Update auth context state
+        updateAuth({
+          token: token,
+          username: "",
+          role: "",
+        });
+        setTimeout(() => {
+          setUser(null);
+          navigate("/");
+        }, 3000);
+      } else if (response?.status === 401) {
+        window.alert("Enter valid Credentials...!");
+      }
+    } catch (error) {
+      window.alert("An error occurred during login. Please try again.");
+    }
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    console.log(user);
+    try {
+      delete axios.defaults.headers.common["Authorization"];
+      const response = await axios.post(
+        "http://localhost:9000/api/v1/user/signIn",
+        user,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        window.alert(response.data);
+        // console.log(response.headers);
+        localStorage.setItem("token", response.headers["access_token"]);
+        axios.defaults.headers.common[
+          "Authorization"
+        ] = `Bearer ${response.headers["access_token"]}`;
+        navigate("/");
+      } else {
+        window.alert("Enter valid Credentials...!");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      // setResponseMessage('Error occurred while creating user');
+    }
   };
 
   return (
@@ -53,9 +124,8 @@ const Signin = () => {
                   <div data-mdb-input-init className="form-outline mb-4">
                     <input
                       type="email"
-                      // value={username}
-                      onChange={(e) => setUsername(e.target.value)}
-                      id="form1Example13"
+                      name="email"
+                      onChange={handleChange}
                       className="form-control form-control-lg"
                     />
                     <label className="form-label" htmlFor="form1Example13">
@@ -65,9 +135,8 @@ const Signin = () => {
                   <div data-mdb-input-init className="form-outline mb-4">
                     <input
                       type="password"
-                      // value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      id="form1Example23"
+                      name="password"
+                      onChange={handleChange}
                       className="form-control form-control-lg"
                     />
                     <label className="form-label" htmlFor="form1Example23">
@@ -77,18 +146,24 @@ const Signin = () => {
                   <div className="d-flex justify-content-around align-items-center mb-4">
                     <a href="#!">Forgot password?</a>
                   </div>
-                  <div className="d-flex justify-content-around align-items-center mb-4">  
+                  <div className="d-flex justify-content-around align-items-center mb-4">
                     <button
                       type="submit"
                       data-mdb-button-init
                       data-mdb-ripple-init
                       className="btn btn-primary btn-lg btn-block"
+                      onClick={(event) => handleSubmit(event)}
                     >
-                      Sign in
+                      Login In
                     </button>
                   </div>
                   <div className="text-center">
-                    <p>Not a member? <a href="#!" onClick={handleRegisterClick}>Register</a></p>
+                    <p>
+                      Not a member?{" "}
+                      <a href="#!" onClick={handleRegisterClick}>
+                        Register
+                      </a>
+                    </p>
                   </div>
                   <div className="divider d-flex align-items-center my-4">
                     <p className="text-center fw-bold mx-3 mb-0 text-muted">
@@ -102,7 +177,7 @@ const Signin = () => {
                       style={{ backgroundColor: " #dd4b39", width: "300px" }}
                       href="#!"
                       role="button"
-                      onClick={signInWithGoogle}
+                      onClick={() => googleLogin()}
                     >
                       <i className="fab fa-google me-2"></i> Continue with
                       Google

@@ -1,0 +1,28 @@
+.booking-page-container {
+    padding: 20px;
+  }
+  
+  .booking-form {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  input[type="datetime-local"] {
+    width: 100%;
+  }
+  
+  .btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+  }
+  
