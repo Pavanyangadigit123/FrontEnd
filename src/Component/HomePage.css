@@ -1,25 +1,76 @@
-.homepage {
-  width: 100%; /* Set width to 100% */
-  height: 120vh; /* Maintain full viewport height */
-  background: url('/HomePage2.jpg') no-repeat center center;
-  background-size: contain; /* Ensure the entire image is visible */
+   /* body, html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  width: 100%;
+  height: 100%;
+} 
+
+ .hero {
+  position: relative;
+  width: 100%;
+  height: 120vh; 
+  overflow: hidden;
+}   */
+
+/* .hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+}   */
+
+
+/* HomePage.css */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 120vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-@media screen and (min-width: 1200px) {
-  .homepage {
-    background-size: cover; /* Switch back to cover for larger screens if needed */
-  }
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }
 
-.header {
+.hero-content {
+  position: relative;
+  z-index: 2;
   text-align: center;
-  padding: 10px;
-  color: rgb(210, 28, 80); /* Adjust color based on your background */
+  color: white;
 }
 
-.footer {
-  text-align: center;
-  padding: 10px;
-  background-color: rgba(0, 0, 0, 0.5); /* Optional: add a translucent background to the footer */
-  color: white; /* Adjust color based on your design */
+.hero-content h1 {
+  font-size: 3rem;
+  color:white;
+  margin-bottom: 1rem;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  color: white;
+  font-weight: bolder;
+  margin-bottom: 2rem;
+}
+
+.btn-get-started {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-get-started:hover {
+  background-color: #2980b9;
 }

@@ -112,14 +112,14 @@ const FindLabour = () => {
               value={filters.state}
               onChange={handleFilterChange}
             />
-            <input
+            {/* <input
               type="text"
               className="form-control mb-1 filter-input"
               name="country"
               placeholder="Search by country..."
               value={filters.country}
               onChange={handleFilterChange}
-            />
+            /> */}
             <input
               type="text"
               className="form-control mb-1 filter-input"

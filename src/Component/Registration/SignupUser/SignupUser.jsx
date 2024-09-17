@@ -51,8 +51,8 @@ const SignupUser = () => {
 
   return (
     <Layout>
-      <h1 className='text-center mt-3'>Register</h1>
-      <div className="container signup-container p-4">
+      <h1 className='text-center mt-3' style={{fontSize:'30px', marginBottom:'5px'}}>Register</h1>
+      <div className="container signup-container1 p-4">
         <form>
           <div className="row">
             <div className="col-md-6">
@@ -124,8 +124,10 @@ const SignupUser = () => {
               </div>
             </div>
           </div>
-          <button type="submit" onClick={handleSubmit} className="btn btn-primary btn-block mt-3">Submit</button>
-        </form>
+          <div className="text-center">
+          <button type="submit" onClick={handleSubmit} className="btn btn-primary2  " style={{textAlign:'center'}}>Submit</button>
+          </div>
+          </form>
       </div>
     </Layout>
   );

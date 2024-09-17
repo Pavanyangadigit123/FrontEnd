@@ -1,6 +1,8 @@
 .footer-custom {
     padding: 10px 0; /* Reduce overall padding */
-    background-color:khaki;
+    background-color:rgb(194, 226, 246);
+    padding-top: 5px;
+    
   }
   
   .footer-custom .p-4 {
@@ -31,5 +33,10 @@
 
   .border-bottom {
     border-bottom: 50px solid #150501; /* Change #ff5733 to your desired color */
+  }
+
+  .custom-footer{
+    margin-top: 20px;
+
   }
   

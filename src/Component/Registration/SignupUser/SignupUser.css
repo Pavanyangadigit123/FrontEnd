@@ -1,36 +1,44 @@
-.signup-container {
-    background-color: #0894d1;
-    border-radius: 25px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
+.signup-container1 {
+  background-color: rgb(194, 226, 246);
+  border-radius: 25px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 900px;
   
-  .signup-container h1 {
-    color: #096dd1;
-    justify-content: center;
-  }
-  
-  .form-control {
-    border-radius: 5px;
-    border: 5px solid #01101e;
-    padding: 10px;
-    font-size: 14px;
-  }
-  
-  .form-control:focus {
-    border-color: #80bdff;
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-  }
-  
-  .btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
-    width: 50%;
-    padding: 10px;
-  }
-  
-  .btn-primary:hover {
-    background-color: #0056b3;
-    border-color: #004085;
-  }
+  padding: 20px; /* Reduced padding to make the container more compact */
+}
 
-  
+.signup-container1 h1 {
+  color: #096dd1;
+  text-align: center; /* Center align the text */
+  margin-bottom: 10px; /* Reduced margin-bottom to reduce gap between heading and form */
+}
+
+.form-control {
+  border-radius: 5px;
+  border: 5px solid #01101e;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.form-control:focus {
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.btn-primary2 {
+  background-color: rgb(73, 178, 244);
+
+  border-color: #007bff;
+  width: 30%;
+  padding: 10px;
+  margin-top: 20px; /* Adjusted margin-top to add some space above the button */
+}
+
+.btn-primary2:hover {
+  background-color: #0056b3;
+  border-color: #004085;
+}
+
+.text-center{
+  text-align: center;
+}

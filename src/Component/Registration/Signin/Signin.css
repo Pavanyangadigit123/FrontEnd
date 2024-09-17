@@ -1,84 +1,103 @@
-/* Signin.css */
+.form-container5 {
+  padding: 10px 15px; 
+  /* padding-left: 100px;  */
+  width: 100%; /* Set width to full container */
+  height: 550px; /* Set a fixed height to prevent scrolling */
+  background-color: rgb(216, 239, 248);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 0 auto; /* Center the form */
+  overflow: hidden; /* Hide overflow to prevent scrolling */
+  display: flex; /* Flexbox to control child alignment */
+  flex-direction: column; /* Arrange children vertically */
+  justify-content: space-between; /* Space out form elements */
+}
 
-.signin-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f0f2f5;
-  }
-  
-  .signin-form {
-    background-color: #94b3c9;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
-    width: 100%;
-  }
-  
-  .signin-form .form-outline {
-    margin-bottom: 90px;
-  }
-  
-  .signin-form label {
-    color: #333333;
-  }
-  
-  .signin-form input {
-    border-radius: 5px;
-    border: 1px solid #ced4da;
-    padding: 10px;
-  }
-  
-  .signin-form .btn-primary {
-    background-color: #cdbbc2;
-    border: none;
-    border-radius: 5px;
-    padding: 12px;
-    font-size: 16px;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
-  
-  .signin-form .btn-primary:hover {
-    background-color: #45a049;
-    font: bolder;
-  }
-  
-  .signin-form .btn-link {
-    color: #4caf50;
-  }
-  
-  .signin-form .btn-link:hover {
-    color: #388e3c;
-  }
-  
-  .signin-form .form-check-label {
-    color: #031417;
-  }
-  
-  .signin-form a {
-    color: #030e04;
-    text-decoration: none;
-  }
-  
-  .signin-form a:hover {
-    color: #388e3c;
-    text-decoration: underline;
-  }
-  
-  .signin-form .text-center {
-    margin-top: 20px;
-    color:#010e17
-  }
-  
-  .signin-form .btn-floating {
-    color: #4caf50;
-    background-color: transparent;
-  }
-  
-  .signin-form .btn-floating:hover {
-    color: #388e3c;
-  }
-  
+.form-outline {
+  margin-bottom: 0.8rem; /* Reduced bottom margin */
+}
+
+.btn-lg {
+  margin-bottom: 0.5rem; /* Reduced margin-bottom */
+  width: 100%; /* Ensure button takes full width */
+  max-width: 250px; /* Limit the max width */
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center the divider */
+  margin: 1rem 0; /* Reduce top/bottom margins */
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #eee;
+  margin: 0 10px; /* Reduce the side margins */
+}
+
+.form-container5 input,
+.form-container5 button,
+.form-container a {
+  padding: 5px; /* Reduced padding */
+  margin: 5px 0; /* Reduced margins */
+}
+
+.form-label {
+  margin-top: 0; /* Remove top margin */
+  margin-bottom: 0.5rem; /* Reduce bottom margin */
+}
+
+.text-center {
+  margin: 0; /* Remove any unnecessary margin */
+}
+
+img {
+  max-width: 100%; /* Ensure the image fits within its column */
+  height: auto; /* Maintain aspect ratio */
+}
+
+
+section.vh-100 {
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margin */
+  display: flex;
+  align-items: center; /* Center the form vertically */
+  justify-content: center; /* Center the form horizontally */
+  height: 100vh; /* Full viewport height */
+}
+
+/* Container styling */
+.container1 {
+  padding: 0; /* Remove padding */
+  margin-top: 0; /* Reduce or remove top margin */
+}
+/* Parent row styling */
+.row {
+  margin: 0; /* Remove any margin */
+  padding: 0; /* Remove any padding */
+}
+
+/* Image column styling */
+.col-md-8.col-lg-7.col-xl-6 {
+  padding: 0; /* Remove padding around the image */
+  margin: 0; /* Remove margin around the image */
+}
+
+/* Image styling */
+img {
+  max-width: 100%; /* Ensure the image fits within its column */
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Remove any bottom spacing caused by inline elements */
+  margin: 0 auto; /* Center image and remove any margin */
+  padding: 0; /* Remove padding */
+}
+
+/* Form column styling */
+.col-md-7.col-lg-5.col-xl-5.offset-xl-1 {
+  padding: 0; /* Remove padding around the form */
+  margin: 0; /* Remove margin around the form */
+}

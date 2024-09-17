@@ -1,3 +1,94 @@
-.navbar-custom{
-    background-color: rgba(236, 234, 109, 0.886);
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px; /* Adjusted padding for a balanced layout */
+  background-color:rgb(194, 226, 246);
+}
+
+.navbar-left,
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-center {
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.navbar-center .navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-center .landmarket-logo {
+  max-height: 90px; /* Ensure logo is not too large */
+  width: auto;
+}
+
+.navbar-nav {
+  display: flex;
+  gap: 20px;
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.nav-link {
+  color: #000;
+  font-size: 16px; /* Default font size for header links */
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+.nav-link h6 {
+  display: inline-block;
+  margin: 0;
+  font-size: 16px; /* Ensure font size fits within the header */
+  font-weight: 500;
+}
+
+.nav-link:hover {
+  color: #007bff;
+}
+
+@media (max-width: 992px) {
+  .navbar-center .landmarket-logo {
+    max-height: 40px;
+  }
+
+  .nav-link h6 {
+    font-size: 14px; /* Slightly smaller font size for medium screens */
+  }
+
+  .navbar {
+    padding: 8px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-center .landmarket-logo {
+    max-height: 35px;
+  }
+
+  .nav-link h6 {
+    font-size: 12px; /* Smaller font size for mobile screens */
+  }
+
+  .navbar {
+    padding: 5px;
+  }
+}
+
+.labourhub-text {
+  margin-left: 10px; /* Adjust spacing between logo and text */
+  font-size: 1.5rem; /* Adjust font size */
+  color: #000; /* Adjust text color */
+  text-decoration: none; /* Remove underline */
+}
+
+.navbar-brand:hover .labourhub-text {
+  color: #3498db; /* Change color on hover if needed */
 }

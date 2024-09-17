@@ -4,19 +4,16 @@ import "./Footer.css";
 function Footer() {
   return (
     <>
-      <div>
+      <div className="custom-footer">
         <footer className="footer-custom text-center text-lg-start  ">
-          <section className="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
-            <div className="me-5 d-none d-lg-block">
+          {/* <section className="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"> */}
+            {/* <div className="me-5 d-none d-lg-block">
               <span>Get connected with us on social networks:</span>
-            </div>
+            </div> */}
 
-            <div>
+            {/* <div>
               <a href="" className="me-4 text-reset">
                 <i className="fab fa-facebook-f"></i>
-              </a>
-              <a href="" className="me-4 text-reset">
-                <i className="fab fa-twitter"></i>
               </a>
               <a href="" className="me-4 text-reset">
                 <i className="fab fa-google"></i>
@@ -27,11 +24,9 @@ function Footer() {
               <a href="" className="me-4 text-reset">
                 <i className="fab fa-linkedin"></i>
               </a>
-              <a href="" className="me-4 text-reset">
-                <i className="fab fa-github"></i>
-              </a>
-            </div>
-          </section>
+              
+            </div> */}
+          {/* </section> */}
 
           <section className="">
             <div className="container text-center text-md-start mt-5">
@@ -53,7 +48,7 @@ function Footer() {
                 <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
                   <h6 className="text-uppercase fw-bold mb-4">Useful links</h6>
                   <p>
-                    <a href="#!" className="text-reset">
+                    <a href="/about" className="text-reset">
                       About us
                     </a>
                   </p>
@@ -79,6 +74,21 @@ function Footer() {
                   <p>
                     <i className="fas fa-print me-3"></i> + 0123456789
                   </p>
+                  <div>
+              <a href="" className="me-4 text-reset">
+                <i className="fab fa-facebook-f"></i>
+              </a>
+              <a href="" className="me-4 text-reset">
+                <i className="fab fa-google"></i>
+              </a>
+              <a href="" className="me-4 text-reset">
+                <i className="fab fa-instagram"></i>
+              </a>
+              <a href="" className="me-4 text-reset">
+                <i className="fab fa-linkedin"></i>
+              </a>
+              
+            </div>
                 </div>
               </div>
             </div>
