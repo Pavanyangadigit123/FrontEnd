@@ -49,7 +49,8 @@
 
 import { Navigate, Outlet } from "react-router-dom";
 import { useAuth } from "../context/auth";
-import About from '../Component/About/About'
+import LabourBooking from "../Component/LabourBooking/LabourBooking";
+// import About from '../Component/About/About'
 
 
 
@@ -58,7 +59,7 @@ const PrivateRoute = () => {
   const [auth] = useAuth(); // Get authentication status from context
   const token = auth?.token || false;
 // console.log(auth?.token);
-  return token ? <About /> : <Navigate to="/signin" />;
+  return token ? <LabourBooking /> : <Navigate to="/signin" />;
 };
 
 export default PrivateRoute;

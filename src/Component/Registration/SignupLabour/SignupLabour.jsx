@@ -27,6 +27,33 @@ const SignupLabour = () => {
   // State variables for Skill Details
   const [skills, setSkills] = useState([]);
   const [skillEntries, setSkillEntries] = useState([]);
+  const [isPasswordValid, setIsPasswordValid] = useState(true);
+  const [isEmailValid, setIsEmailValid] = useState(true);
+
+  // Email validation function
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const handleEmailChange = (e) => {
+    const newEmail = e.target.value;
+    setEmail(newEmail);
+    setIsEmailValid(validateEmail(newEmail));
+  };
+
+  // Password validation function
+  const validatePassword = (password) => {
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    return passwordRegex.test(password);
+  };
+
+  const handlePasswordChange = (e) => {
+    const newPassword = e.target.value;
+    setPassword(newPassword);
+    setIsPasswordValid(validatePassword(newPassword));
+  };
 
   // Fetch available skills when the component mounts
   useEffect(() => {
@@ -138,8 +165,25 @@ const SignupLabour = () => {
       availability,
       labourSkillDtos,
     };
+    if (password !== confirmPassword) {
+      window.alert("Please confirm your password");
+    }
 
-    console.log(userData);
+    const emailIsValid = validateEmail(email);
+    const passwordIsValid = validatePassword(password);
+
+    setIsEmailValid(emailIsValid);
+    setIsPasswordValid(passwordIsValid);
+
+    if (!emailIsValid) {
+      alert("Please enter a valid email");
+      return;
+    } else if (!passwordIsValid) {
+      alert("Please enter a valid  password according to the guidelines.");
+      return;
+    }
+
+    // console.log(userData);
     try {
       const response = await axios.post(
         "http://localhost:9000/api/v1/labour/signUp",
@@ -186,10 +230,19 @@ const SignupLabour = () => {
               <input
                 type="password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="form-control"
+                onChange={handlePasswordChange}
+                className={`form-control ${
+                  !isPasswordValid ? "is-invalid" : ""
+                }`}
                 placeholder="Enter Password"
               />
+               {!isPasswordValid && (
+                  <small className="text-danger">
+                    Password must be at least 8 characters long, contain 1
+                    uppercase letter, 1 lowercase letter, 1 number, and 1
+                    special character.
+                  </small>
+                )}
             </div>
           </div>
 
@@ -223,10 +276,17 @@ const SignupLabour = () => {
               <input
                 type="email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="form-control"
+                onChange={handleEmailChange}
+                className={`form-control ${
+                  !isEmailValid ? "is-invalid" : ""
+                }`}
                 placeholder="Enter email"
               />
+              {!isEmailValid && (
+                  <small className="text-danger">
+                    Please enter a valid email address.
+                  </small>
+                )}
             </div>
             <div className="form-group1">
               <label htmlFor="dailywages">Daily Wages</label>
@@ -383,6 +443,7 @@ const SignupLabour = () => {
                   </label>
                   <input
                     type="number"
+                     min="0"
                     id={`yearsOfExperience-${index}`}
                     value={entry.yearsOfExperience}
                     onChange={(e) =>
@@ -422,7 +483,8 @@ const SignupLabour = () => {
 
                 <button
                   type="button"
-                  className="btn btn-danger mt-2"
+                 className="btn btn-danger btn-sm mt-2"
+                 style={{ width: '100px' }}
                   onClick={() => handleRemoveSkillEntry(index)}
                 >
                   Remove Skill

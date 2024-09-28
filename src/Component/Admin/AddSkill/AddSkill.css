@@ -1,0 +1,59 @@
+.add-skill-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    background-color: #f4f4f4; /* Light background color */
+  }
+  
+  .add-skill-form {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px; /* Adjust width as needed */
+  }
+  
+  .add-skill-form h2 {
+    margin-bottom: 20px;
+  }
+  
+  .add-skill-form div {
+    margin-bottom: 15px;
+  }
+  
+  .add-skill-form label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .add-skill-form input,
+  .add-skill-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .add-skill-form button {
+    background-color: #007bff; /* Bootstrap primary color */
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  .add-skill-form button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+  
+  .error-message {
+    color: red;
+  }
+  
+  .success-message {
+    color: green;
+  }
+  

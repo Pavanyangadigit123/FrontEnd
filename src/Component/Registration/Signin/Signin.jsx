@@ -4,10 +4,14 @@ import Layout from "../../Layout/Layout";
 import "./Signin.css";
 import axios from "axios";
 import { GoogleLogin, useGoogleLogin } from "@react-oauth/google";
+import { useAuth } from "../../../context/auth";
+import parseJwt from "../../../context/parseJWT";
 
 const Signin = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const navigate = useNavigate();
+
+  const [auth, updateAuth] = useAuth();
 
   const [user, setUser] = useState({
     email: "",
@@ -18,8 +22,6 @@ const Signin = () => {
     const { name, value } = event.target;
     setUser((prevUser) => ({ ...prevUser, [name]: value }));
   };
-
-  console.log(user);
 
   const handleRegisterClick = (e) => {
     e.preventDefault();
@@ -50,7 +52,6 @@ const Signin = () => {
           console.error(err);
           window.alert("An error occurred during login. Please try again.");
         });
-
       if (response?.status === 200) {
         console.log(response);
         window.alert("Logged in Successfully.");
@@ -70,6 +71,7 @@ const Signin = () => {
         window.alert("Enter valid Credentials...!");
       }
     } catch (error) {
+      console.log(error);
       window.alert("An error occurred during login. Please try again.");
     }
   };
@@ -78,7 +80,7 @@ const Signin = () => {
     event.preventDefault();
     console.log(user);
     try {
-      delete axios.defaults.headers.common["Authorization"];
+      // delete axios.defaults.headers.common["Authorization"];
       const response = await axios.post(
         "http://localhost:9000/api/v1/user/signIn",
         user,
@@ -90,19 +92,59 @@ const Signin = () => {
       );
 
       if (response.status === 200) {
-        window.alert(response.data);
+        window.alert("Logged in Successfully.");
         // console.log(response.headers);
         localStorage.setItem("token", response.headers["access_token"]);
-        axios.defaults.headers.common[
-          "Authorization"
-        ] = `Bearer ${response.headers["access_token"]}`;
-        navigate("/");
+        const userToken = parseJwt(response.headers["access_token"]);
+        console.log("userToken data:", userToken);
+        // updateAuth({
+        //   token: response.headers["access_token"],
+        //   username: "",
+        //   role: "",
+        // });
+        updateAuth({
+          userId : userToken.userId,
+          token: response.headers["access_token"],
+          username: userToken.username || "", // Assuming userToken has a username field
+          role: userToken.authorities || "", // Use authorities field for the role
+        });
+        console.log("role" + userToken.authorities);
+        if (userToken?.authorities === "admin") {
+          //fetch admin details
+
+          console.log(userToken.userId);
+          const adminDetailsResponse = await axios.get(
+            `http://localhost:9000/api/v1/user/user-id/${userToken.userId}`, // Assuming you have an endpoint to get user by ID
+            {
+              headers: {
+                Authorization: auth?.token,
+                "Content-Type": "application/json",
+              },
+            }
+          );
+
+          // Store admin details in local storage or context
+          const adminDetails = adminDetailsResponse.data;
+          console.log(adminDetails);
+          localStorage.setItem("adminDetails", JSON.stringify(adminDetails));
+
+          // Navigate to Admin Profile after fetching details
+          setTimeout(() => {
+            navigate("/admin");
+          }, 1000); // 2000 milliseconds = 2 seconds delay
+        } else {
+
+          navigate("/");
+        }
+
+        // axios.defaults.headers.common[
+        //   "Authorization"
+        // ] = `Bearer ${response.headers["access_token"]}`;
       } else {
         window.alert("Enter valid Credentials...!");
       }
     } catch (error) {
       console.error("Error:", error);
-      // setResponseMessage('Error occurred while creating user');
     }
   };
 

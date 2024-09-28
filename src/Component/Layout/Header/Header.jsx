@@ -1,10 +1,40 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import "./Header.css"
+
+import { useAuth } from "../../../context/auth"
 
 
 
 const Header = () => {
+  const [auth, updateAuth] = useAuth();
+  const navigate=useNavigate();
+  console.log(auth);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token'); // Remove token from localStorage
+  
+    // Debugging: Check if token is removed
+    const removedToken = localStorage.getItem('token');
+    console.log("Token after removal:", removedToken); // Should be null
+  
+    updateAuth({
+      username: null,
+      token: null,
+      userId: null,
+      role: null,
+    }); // Clear authentication state
+  
+    // Debugging: Check if auth state is cleared
+    console.log("Auth state after logout:", auth);
+  
+    // Attempt navigation with replace instead of push
+    navigate('/', { replace: true }); // Replace the current entry with the new path
+  
+    // Debugging: Confirm navigation
+    console.log("Navigated to home page");
+  };
+  
  
 
     return (
@@ -48,6 +78,7 @@ const Header = () => {
                 <i className="fas fa-user-plus"></i> <h6>Signup</h6>
               </Link>
             </li> */}
+            
             <li className="nav-item">
               <Link className="nav-link active" aria-current="page" to="/signin">
                 <i className="fas fa-sign-in-alt"></i> <h6>SignIn</h6>
@@ -73,15 +104,20 @@ const Header = () => {
                 </a>
                 <ul className="dropdown-menu" aria-labelledby="settingsDropdown">
                   <li>
-                    <Link className="dropdown-item" to="/profile">
+                    <Link className="dropdown-item" to="/userProfile">
                       <i className="fas fa-user"></i> View Profile
                     </Link>
                   </li>
                   <li>
-                    <Link className="dropdown-item" to="/signout">
-                      <i className="fas fa-sign-out-alt"></i> Sign Out
+                    <Link className="dropdown-item" to="/myBookings">
+                      <i className="fas fa-user"></i> My Bookings
                     </Link>
                   </li>
+                  {auth?.token && ( <li>
+                    <Link className="dropdown-item" onClick={handleLogout}>
+                      <i className="fas fa-sign-out-alt"></i> Sign Out
+                    </Link>
+                  </li>)}
                 </ul>
               </li>
               {/* Notification Icon */}

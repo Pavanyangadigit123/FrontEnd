@@ -1,0 +1,32 @@
+.admin-profile-card1 {
+    background-color: #ffffff; /* Card background color */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+    max-width: 400px; /* Maximum width of the card */
+    margin: 20px auto; /* Center the card */
+    padding: 20px; /* Padding inside the card */
+    text-align: center; /* Center text */
+}
+
+.profile-pic1 {
+    margin-bottom: 20px; /* Space below profile picture */
+}
+
+.profile-pic1 img {
+    width: 100px; /* Width of profile picture */
+    height: 100px; /* Height of profile picture */
+    border-radius: 50%; /* Circular profile picture */
+    object-fit:  cover; /* Cover the space without distortion */
+    margin-top: 10px; /* Adjust this value as needed */
+}
+
+.admin-details h2 {
+    margin: 10px 0; /* Space around username */
+    font-size: 24px; /* Font size for username */
+}
+
+.admin-details p {
+    margin: 5px 0; /* Space around paragraphs */
+    font-size: 16px; /* Font size for other details */
+    color: #555; /* Color for text */
+}

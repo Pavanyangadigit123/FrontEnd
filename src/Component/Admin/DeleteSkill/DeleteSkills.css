@@ -1,0 +1,42 @@
+.delete-skills-page {
+  padding: 20px;
+}
+
+.skills-list {
+  list-style: none;
+  padding: 0;
+}
+
+.skills-list-item {
+  margin-bottom: 10px;
+}
+
+.skill-box {
+  display: flex;
+  justify-content: space-between; /* Align skill name and button next to each other */
+  align-items: center; /* Vertically center the content */
+  background-color: #f5f5f5; /* Light background for the skill box */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  width: 50%; /* Optional: Adjust the width of the box */
+  margin: 0 auto; /* Center the box horizontally */
+}
+
+.skill-name {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.delete-button12 {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.delete-button:hover {
+  background-color: darkred;
+}

@@ -25,20 +25,24 @@
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
-.btn-primary2 {
+.btn-primary21 {
   background-color: rgb(73, 178, 244);
-
+  padding: 8px 16px;
   border-color: #007bff;
-  width: 30%;
-  padding: 10px;
-  margin-top: 20px; /* Adjusted margin-top to add some space above the button */
+  
+
 }
 
-.btn-primary2:hover {
+.btn-primary21:hover {
   background-color: #0056b3;
   border-color: #004085;
 }
 
-.text-center{
-  text-align: center;
+.text-center1{
+  display: flex;
+  justify-content: center; /* Centers the button horizontally */
+  margin-top: 20px; /* Optional: adds space above the button */
+  justify-content: center; /* Centers content horizontally */
+  align-items: center; /* Centers content vertically (if needed) */
+  width: 100%;
 }

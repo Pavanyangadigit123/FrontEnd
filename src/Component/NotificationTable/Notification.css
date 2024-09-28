@@ -1,0 +1,80 @@
+.notification-table-container {
+    padding: 10px  ; /* Increased top padding */
+    background-color: #ffffff; /* White background for contrast */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    max-width: 800px; /* Limit max width */
+    margin: auto; /* Centering the container */
+}
+
+.notification-table-container h2 {
+    margin-top: 30px; /* Space between container and header */
+    margin-bottom: 20px; /* Space below the header */
+    text-align: center; /* Center align header */
+}
+
+.notification-table {
+    width: 100%; /* Full width table */
+    border-collapse: collapse; /* Merge table borders */
+    margin-top: 20px; /* Spacing from the title */
+}
+
+.notification-table th,
+.notification-table td {
+    border: 1px solid #ccc; /* Border for table cells */
+    padding: 15px; /* Inner padding */
+    text-align: left; /* Left align text */
+    font-size: 16px; /* Font size */
+}
+
+.notification-table th {
+    background-color: rgb(194, 226, 246); /* Blue background for header */
+    color: rgb(20, 1, 1); /* White text in header */
+    font-weight: bold; /* Bold text */
+    text-transform: uppercase; /* Uppercase letters */
+}
+
+.notification-table tr:nth-child(even) {
+    background-color: #f9f9f9; /* Light background for even rows */
+}
+
+.notification-table tr:hover {
+    background-color: #e2e6ea; /* Light grey on hover */
+}
+
+.notification-table .sl-no {
+    width: 10%; /* Fixed width for serial number */
+    text-align: center; /* Center align */
+}
+
+.notification-table .title,
+.notification-table .description {
+    width: 40%; /* Fixed width for title and description */
+}
+
+.notification-table .created-time {
+    width: 30%; /* Fixed width for created time */
+    text-align: center; /* Center align */
+}
+
+.error-message {
+    color: red; /* Error message color */
+    text-align: center; /* Center align error message */
+    margin-top: 20px; /* Spacing from the table */
+}
+
+/* Add space between columns */
+.notification-table th, 
+.notification-table td {
+    border: 1px solid #ddd; /* Lighter border for all cells */
+}
+
+.notification-table th:first-child, 
+.notification-table td:first-child {
+    border-left: 2px solid #007bff; /* Thicker left border for first column */
+}
+
+.notification-table th:last-child, 
+.notification-table td:last-child {
+    border-right: 2px solid #007bff; /* Thicker right border for last column */
+}
