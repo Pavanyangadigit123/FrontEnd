@@ -3,6 +3,8 @@ import Layout from "../../Layout/Layout";
 import "./SignupUser.css";
 import { storage } from "../../../firebaseConfig";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const SignupUser = () => {
   const [area, setArea] = useState("");
@@ -23,7 +25,7 @@ const SignupUser = () => {
 
   const [otp, setOtp] = useState("");
 
-
+  const navigate=useNavigate();
   // Email validation function
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -78,9 +80,8 @@ const SignupUser = () => {
     }
   };
 
-  const emailVerify = async (e) => {
-    e.preventDefault();
-    if (user.password !== confirmPassword) {
+  const emailVerify = async () => {
+    if (password !== confirmPassword) {
       alert("Please confirm your password");
     } else {
       try {
@@ -91,7 +92,7 @@ const SignupUser = () => {
           .catch(() =>
             alert("Internal server error while generating otp")
           );
-        console.log(response.data);
+        console.log(response);
       } catch (error) {
         console.log(error);
       }
@@ -153,6 +154,8 @@ const SignupUser = () => {
     
           if (response.ok) {
             alert("Registration is Completed");
+            navigate("/signin");
+            window.location.reload();
           } else {
             alert("Error in registration");
           }
@@ -456,7 +459,7 @@ const SignupUser = () => {
                 Before completing the registration process please enter the otp
                 which has been sent your <b> '{email}'</b>
               </p>
-              <input type="text" value={otp} onChange={(e) => handleOtp(e)} />
+              <input type="text" value={otp} onChange={(e) => setOtp(e.target.value)} />
             </div>
             <div className="modal-footer">
               <button

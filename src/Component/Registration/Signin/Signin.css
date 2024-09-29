@@ -1,8 +1,8 @@
 .form-container5 {
   padding: 10px 15px; 
   /* padding-left: 100px;  */
-  width: 100%; /* Set width to full container */
-  height: 550px; /* Set a fixed height to prevent scrolling */
+  width: 80%; /* Set width to full container */
+  height: 500px; /* Set a fixed height to prevent scrolling */
   background-color: rgb(216, 239, 248);
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);

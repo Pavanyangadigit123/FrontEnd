@@ -53,53 +53,6 @@ const BookingPage = () => {
     }
   };
 
-  // const proceedOrder = (order) => {
-  //   const options = {
-  //     key_id: "rzp_test_t3ROS51DwZEOli",
-  //     amount: order.amount,
-  //     currency: "INR",
-  //     name: "payment_demo",
-  //     description: "Course Payment",
-  //     order_id: order.razorPayOrderID,
-  //     receipt: order.email,
-  //     callback_url:
-  //       "http://localhost:9000/api/v1/booking/handle-payment-callback",
-  //     prefill: {
-  //       name: order.name,
-  //       email: order.email,
-  //       contact: order.phno,
-  //     },
-  //     theme: {
-  //       color: "#3399cc",
-  //     },
-  //     handler: async function (res) {
-  //       order["razorPayOrderID"] = res.razorpay_order_id;
-  //       const result =await axios
-  //         .post(
-  //           `http://localhost:9000/api/v1/booking/handle-payment-callback/${res.razorpay_order_id}`,
-  //           {},
-  //           {
-  //             headers: {
-  //               "Content-Type": "application/json",
-  //               Authorization: auth?.token,
-  //             },
-  //           }
-  //         )
-  //         .catch((err) => {
-  //           console.log("Payment verification failed.", err);
-  //         });
-  //         console.log(result);
-  //         window.alert(result.data);
-  //         navigate("/");
-  //     },
-  //     modal: {
-  //       ondismiss: () => handleCancelPayment(order?.id),
-  //     },
-  //   };
-
-  //   const rzp1 = new window.Razorpay(options);
-  //   rzp1.open();
-  // };
 
   const proceedOrder = (order) => {
     const options = {
@@ -133,7 +86,8 @@ const BookingPage = () => {
             }
           );
           console.log(result);
-          window.alert(result.data);
+          window.alert(result.data,"Labour Booked Successfully");
+          
 
           // Navigate to the homepage after successful payment
           setTimeout(() => {

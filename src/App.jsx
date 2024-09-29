@@ -30,6 +30,7 @@ import AdminProfile from './Component/Admin/AdminProfile/AdminProfile';
 import AddNotification from './Component/Admin/Notification/AddNotification';
 import UserProfile from './Component/UserProfile/UserProfile';
 import LabourBooking from './Component/LabourBooking/LabourBooking';
+import ForgotPassword from './Component/Registration/Signin/ForgotPassword';
 
 
 
@@ -58,6 +59,7 @@ function App() {
         <Route path="/userProfile" element={<UserProfile />} />
         {/* <Route path="/myBookings" element={<LabourBooking />} /> */}
         <Route path="/about" element={<About />} />
+        <Route path="/forgotPassword" element={<ForgotPassword/>} />
 
        
         <Route path="/myBookings" element={<PrivateRoute><LabourBooking/></PrivateRoute>}/>
@@ -73,6 +75,7 @@ function App() {
         <Route path="skills" element={<AddSkill/>} />
         <Route path="deleteSkills" element={<DeleteSkills/>} />
         <Route path="addNotification" element={<AddNotification/>} />
+       
        
 
         </Route>

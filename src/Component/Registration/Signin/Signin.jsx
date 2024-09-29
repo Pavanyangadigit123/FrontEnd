@@ -79,6 +79,7 @@ const Signin = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(user);
+    
     try {
       // delete axios.defaults.headers.common["Authorization"];
       const response = await axios.post(
@@ -90,6 +91,8 @@ const Signin = () => {
           },
         }
       );
+
+      console.log(response.data);
 
       if (response.status === 200) {
         window.alert("Logged in Successfully.");
@@ -145,6 +148,11 @@ const Signin = () => {
       }
     } catch (error) {
       console.error("Error:", error);
+      if(error.status === 401){
+        window.alert("Enter valid Credentials...!");
+      }else{
+        window.alert("Internal server error");
+      }
     }
   };
 
@@ -186,7 +194,7 @@ const Signin = () => {
                     </label>
                   </div>
                   <div className="d-flex justify-content-around align-items-center mb-4">
-                    <a href="#!">Forgot password?</a>
+                    <a href="/forgotPassword">Forgot password?</a>
                   </div>
                   <div className="d-flex justify-content-around align-items-center mb-4">
                     <button
@@ -212,7 +220,7 @@ const Signin = () => {
                       OR
                     </p>
                   </div>
-                  <div className="text-center">
+                  <div className="text-center" style={{ marginBottom: "-50px" }}>
                     <a
                       data-mdb-ripple-init
                       className="btn btn-primary btn-lg btn-block mx-auto"

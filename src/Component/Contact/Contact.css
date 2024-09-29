@@ -1,14 +1,14 @@
-/* Container to center the form */
-.contact-form-container {
+/* 
+.contact-form-container1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Full viewport height to center vertically */
-    background-color: #f8f9fa; /* Light background color */
+    height: 100vh; 
+    background-color: #f8f9fa; 
   }
   
-  /* Styling for the form */
-  .contact-form {
+
+  .contact-form1 {
     width: 26rem;
     padding: 2rem;
     background-color: white;
@@ -16,12 +16,11 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   
-  /* Ensure the form elements are styled properly */
   .form-outline {
     margin-bottom: 1.5rem;
   }
   
-  .form-outline .form-control {
+  .form-outline1 .form-control {
     width: 100%;
     padding: 10px;
     font-size: 1rem;
@@ -29,12 +28,12 @@
     border: 1px solid #ced4da;
   }
   
-  .form-outline .form-label {
+  .form-outline1 .form-label {
     font-size: 0.9rem;
     margin-top: -0.5rem;
   }
   
-  /* Style the checkbox section */
+ 
   .form-check {
     display: flex;
     justify-content: center;
@@ -49,7 +48,7 @@
     margin-right: 8px;
   }
   
-  /* Button styling */
+
   .btn-block {
     width: 100%;
     padding: 10px;
@@ -65,8 +64,79 @@
     background-color: #0056b3;
   }
   
-  /* Margin-bottom utility class */
+
   .mb-4 {
     margin-bottom: 1.5rem;
   }
+
+  .form-outline1 {
+    position: relative;
+    margin-bottom: 20px;
+  }
   
+  .form-label {
+    position: absolute;
+    top: -12px; 
+    left: 12px;
+    background-color: white; 
+    padding: 0 5px; 
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .form-control {
+    padding-top: 10px; 
+    padding-bottom: 10px;
+    font-size: 16px;
+  }
+  
+   */
+
+   /* Container to center the form */
+.contact-form-container1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f8f9fa;
+}
+
+/* Form styling */
+.contact-form1 {
+  width: 26rem;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Form inputs styling */
+.form-outline1 .form-control {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 4px;
+  border: 1px solid #ced4da;
+  margin-bottom: 1.5rem;
+}
+
+/* Button styling */
+.btn-block {
+  width: 100%;
+  padding: 10px;
+  font-size: 1.1rem;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-block:hover {
+  background-color: #0056b3;
+}
+
+/* Utility class */
+.mb-4 {
+  margin-bottom: 1.5rem;
+}

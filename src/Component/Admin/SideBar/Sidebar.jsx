@@ -11,12 +11,13 @@ import {
   BsPersonPlusFill,
   BsFillBellFill,
 } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../SideBar/Sidebar.css";
 import { useAuth } from "../../../context/auth";
 
 function Sidebar({ openSidebarToggle, OpenSidebar }) {
   const [auth] = useAuth();
+  const navigate=useNavigate();
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -30,6 +31,11 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
     navigate("/"); // Redirect immediately after logout
   };
 
+  const navigateToHome = () => {
+    navigate("/"); 
+  };
+
+
   return (
     <aside
       id="sidebar"
@@ -38,7 +44,7 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
       <div className="sidebar-title">
         <div className="sidebar-brand">
           {/* Replace with your LabourHub logo from the public folder */}
-          <img src="/logo2.jpg" alt="LabourHub Logo" className="logo" />
+          <img src="/logo2.jpg" alt="LabourHub Logo" className="logo"  onClick={navigateToHome} />
           <span className="title">LabourHub</span>
         </div>
         <span className="icon close_icon" onClick={OpenSidebar}>

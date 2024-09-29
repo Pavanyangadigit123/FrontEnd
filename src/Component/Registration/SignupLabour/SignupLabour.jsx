@@ -4,6 +4,7 @@ import "./SignupLabour.css";
 import { storage } from "../../../firebaseConfig";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const SignupLabour = () => {
   // State variables for Personal Details
@@ -29,6 +30,9 @@ const SignupLabour = () => {
   const [skillEntries, setSkillEntries] = useState([]);
   const [isPasswordValid, setIsPasswordValid] = useState(true);
   const [isEmailValid, setIsEmailValid] = useState(true);
+
+  const [otp, setOtp] = useState("");
+  const navigate=useNavigate();
 
   // Email validation function
   const validateEmail = (email) => {
@@ -140,6 +144,101 @@ const SignupLabour = () => {
     }
   };
 
+  const emailVerify = async () => {
+    if (password !== confirmPassword) {
+      alert("Please confirm your password");
+    } else {
+      try {
+        const response = await axios
+          .post("http://localhost:9000/api/v1/validator", {
+            value: email,
+          })
+          .catch(() =>
+            alert("Internal server error while generating otp")
+          );
+        console.log(response);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
+  const verifyOtp = async () => {
+    try {
+      const response = await axios
+        .post("http://localhost:9000/api/v1/validator/verify", {
+          value: email,
+          otp: otp,
+        })
+        .catch(() => window.alert("Invalid otp enter valid otp"));
+      if (response.status === 200) {
+        setOtp("");
+        window.alert(response?.data);
+        const labourSkillDtos = skillEntries.map((entry) => ({
+          skillId: entry.skillId,
+          yearsOfExperience: entry.yearsOfExperience,
+          proficiencyLevel: entry.proficiencyLevel,
+        }));
+    
+        const userData = {
+          email,
+          phoneNumber,
+          area,
+          firstName,
+          lastName,
+          password,
+          city,
+          state,
+          zipCode,
+          country,
+          profilePic,
+          dailyWages: parseFloat(dailyWages),
+          availability,
+          labourSkillDtos,
+        };
+        if (password !== confirmPassword) {
+          window.alert("Please confirm your password");
+        }
+    
+        const emailIsValid = validateEmail(email);
+        const passwordIsValid = validatePassword(password);
+    
+        setIsEmailValid(emailIsValid);
+        setIsPasswordValid(passwordIsValid);
+    
+        if (!emailIsValid) {
+          alert("Please enter a valid email");
+          return;
+        } else if (!passwordIsValid) {
+          alert("Please enter a valid  password according to the guidelines.");
+          return;
+        }
+    
+        // console.log(userData);
+        try {
+          const response = await axios.post(
+            "http://localhost:9000/api/v1/labour/signUp",
+            userData
+          );
+    
+          console.log(response);
+    
+          if (response?.status == 200) {
+            alert("Skill details submitted, registration completed");
+            navigate("/signin");
+            window.location.reload();
+          } else {
+            alert("Error in submitting skill details");
+          }
+        } catch (error) {
+          console.error("Error:", error);
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   // Submit handler for Skill Details form
   const handleSkillDetailsSubmit = async (e) => {
     e.preventDefault();
@@ -182,6 +281,8 @@ const SignupLabour = () => {
       alert("Please enter a valid  password according to the guidelines.");
       return;
     }
+
+
 
     // console.log(userData);
     try {
@@ -413,7 +514,7 @@ const SignupLabour = () => {
 
       {/* Skill Details Form */}
       <div className="container1 form-container6">
-        <form onSubmit={handleSkillDetailsSubmit}>
+        <form /*onSubmit={handleSkillDetailsSubmit}*/>
           <h3>Skill Details</h3>
           <div className="form-group1">
             {skillEntries.map((entry, index) => (
@@ -501,10 +602,61 @@ const SignupLabour = () => {
             </button>
           </div>
 
-          <button type="submit" className="btn btn-primary1 mt-2">
+          <button type="button" className="btn btn-primary1 mt-2" data-bs-toggle="modal"
+                    data-bs-target="#myModal" onClick={() => emailVerify()}>
             Submit Skill Details
           </button>
         </form>
+      </div>
+
+      {/* otp fields*/}
+      <div
+        className="modal fade"
+        id="myModal"
+        tabIndex={-1}
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+        // ref={modalRef}
+      >
+        <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h1 className="modal-title fs-5" id="exampleModalLabel">
+                Verify your Email
+              </h1>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              />
+            </div>
+            <div className="modal-body">
+              <p>
+                Before completing the registration process please enter the otp
+                which has been sent your <b> '{email}'</b>
+              </p>
+              <input type="text" value={otp} onChange={(e) => setOtp(e.target.value)} />
+            </div>
+            <div className="modal-footer">
+              <button
+                type="button"
+                className="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                className="btn btn-primary"
+               
+                onClick={() => verifyOtp()}
+              >
+                Verify
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </Layout>
   );
